@@ -10,7 +10,7 @@ ExJira can be installed by adding `ex_jira` to your list of dependencies in `mix
 
 ```elixir
 def deps do
-  [{:ex_jira, "~> 0.0.1"}]
+  [{:ex_jira, "~> 0.0.2"}]
 end
 ```
 
