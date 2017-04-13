@@ -1,4 +1,4 @@
-defmodule JirexTest do
+defmodule ExJiraTest do
   use ExUnit.Case
-  #doctest Jirex
+  #doctest ExJira
 end

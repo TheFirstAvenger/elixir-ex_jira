@@ -1,6 +1,6 @@
 require Logger
 
-defmodule Jirex.Request do
+defmodule ExJira.Request do
   @moduledoc """
   Provides the base request function and helper functions for GET and POST.
   All request functions return either {:ok, {status, data}} or {:error, reason}
@@ -9,15 +9,15 @@ defmodule Jirex.Request do
   @type request_response :: {:ok, any} | {:error, any}
 
   @spec jira_account() :: String.t
-  defp jira_account(), do: Application.get_env(:jirex, :account)
+  defp jira_account(), do: Application.get_env(:ex_jira, :account)
   @spec jira_username() :: String.t
-  defp jira_username(), do: Application.get_env(:jirex, :username)
+  defp jira_username(), do: Application.get_env(:ex_jira, :username)
   @spec jira_password() :: String.t
-  defp jira_password(), do: Application.get_env(:jirex, :password)
+  defp jira_password(), do: Application.get_env(:ex_jira, :password)
   @spec jira_timeout() :: String.t
-  defp jira_timeout(), do: Application.get_env(:jirex, :timeout) || 30_000
+  defp jira_timeout(), do: Application.get_env(:ex_jira, :timeout) || 30_000
   @spec jira_client() :: atom
-  defp jira_client(), do: Application.get_env(:jirex, :http_client) || HTTPotion
+  defp jira_client(), do: Application.get_env(:ex_jira, :http_client) || HTTPotion
 
   @doc """
   Sends a GET request to the specified resource_path with the specified query_params.
@@ -82,10 +82,10 @@ defmodule Jirex.Request do
 
   ## Examples
 
-      iex> Jirex.Request.request("GET", "/some/item", "a=b&c=d", "")
+      iex> ExJira.Request.request("GET", "/some/item", "a=b&c=d", "")
       {:ok, %{"id" => "1001"}}
 
-      iex> Jirex.Request.request("GET", "/httpotion/failure", "a=b&c=d", "")
+      iex> ExJira.Request.request("GET", "/httpotion/failure", "a=b&c=d", "")
       {:error, "some error"}
 
   """
@@ -93,7 +93,7 @@ defmodule Jirex.Request do
   def request(method, resource_path, query_params, payload) do
     url = "https://#{jira_account()}/rest/api/latest#{resource_path}?#{query_params}"
     auth = get_auth()
-    Logger.debug("Jirex.Request: Sending #{method} to #{url} using #{jira_client()}")
+    Logger.debug("ExJira.Request: Sending #{method} to #{url} using #{jira_client()}")
     case httpotion_request(jira_client(), method, url, payload, [timeout: jira_timeout(), headers: ["Content-Type": "application/json", "Authorization": auth]]) do
       %HTTPotion.ErrorResponse{message: message} ->
         {:error, message}

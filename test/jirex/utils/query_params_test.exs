@@ -1,6 +1,6 @@
 defmodule QueryParamsTest do
   use ExUnit.Case
-  alias Jirex.QueryParams
+  alias ExJira.QueryParams
 
   doctest QueryParams
 

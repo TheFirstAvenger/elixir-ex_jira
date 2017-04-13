@@ -1,8 +1,8 @@
-defmodule Jirex.Mixfile do
+defmodule ExJira.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :jirex,
+    [app: :ex_jira,
      version: "0.0.1",
      elixir: "~> 1.4",
      description: description(),
@@ -43,6 +43,6 @@ defmodule Jirex.Mixfile do
   defp package do
     [maintainers: ["Mike Binns"],
      licenses: ["MIT"],
-     links: %{"GitHub" => "https://github.com/TheFirstAvenger/elixir-jirex.git"}]
+     links: %{"GitHub" => "https://github.com/TheFirstAvenger/elixir-ex_jira.git"}]
   end
 end

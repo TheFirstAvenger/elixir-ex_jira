@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :jirex, key: :value
+#     config :ex_jira, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:jirex, :key)
+#     Application.get_env(:ex_jira, :key)
 #
 # Or configure a 3rd-party app:
 #

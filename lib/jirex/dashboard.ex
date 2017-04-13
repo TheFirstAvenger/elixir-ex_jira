@@ -1,6 +1,6 @@
-defmodule Jirex.Dashboard do
-  alias Jirex.Request
-  alias Jirex.QueryParams
+defmodule ExJira.Dashboard do
+  alias ExJira.Request
+  alias ExJira.QueryParams
 
   @moduledoc """
   Provides access to the Dashboard resource.
@@ -13,7 +13,7 @@ defmodule Jirex.Dashboard do
 
   ## Examples
 
-      iex> Jirex.Dashboard.all()
+      iex> ExJira.Dashboard.all()
       {:ok, [%{"id" => "1007"}, %{"id" => "1008"}]}
 
   """
@@ -27,7 +27,7 @@ defmodule Jirex.Dashboard do
 
   ## Examples
 
-      iex> Jirex.Dashboard.all!()
+      iex> ExJira.Dashboard.all!()
       [%{"id" => "1007"}, %{"id" => "1008"}]
 
   """
@@ -44,7 +44,7 @@ defmodule Jirex.Dashboard do
 
   ## Examples
 
-      iex> Jirex.Dashboard.get("1009")
+      iex> ExJira.Dashboard.get("1009")
       {:ok, %{"id" => "1009"}}
 
   """
@@ -58,7 +58,7 @@ defmodule Jirex.Dashboard do
 
   ## Examples
 
-      iex> Jirex.Dashboard.get!("1009")
+      iex> ExJira.Dashboard.get!("1009")
       %{"id" => "1009"}
 
   """

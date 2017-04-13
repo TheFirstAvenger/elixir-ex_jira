@@ -1,6 +1,6 @@
 defmodule RequestTest do
   use ExUnit.Case
-  alias Jirex.Request
+  alias ExJira.Request
 
   doctest Request
 

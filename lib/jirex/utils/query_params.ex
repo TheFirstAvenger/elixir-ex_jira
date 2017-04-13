@@ -1,4 +1,4 @@
-defmodule Jirex.QueryParams do
+defmodule ExJira.QueryParams do
 
   @moduledoc """
   Helper module to convert parameters passed as a keyword list into a querystring.
@@ -10,19 +10,19 @@ defmodule Jirex.QueryParams do
 
   ## Examples
 
-      iex> Jirex.QueryParams.convert([asdf: 123, hjkl: 456], [:asdf, :hjkl])
+      iex> ExJira.QueryParams.convert([asdf: 123, hjkl: 456], [:asdf, :hjkl])
       "asdf=123&hjkl=456"
 
-      iex> Jirex.QueryParams.convert([asdf: 123, hjkl: 456], [:asdf])
+      iex> ExJira.QueryParams.convert([asdf: 123, hjkl: 456], [:asdf])
       "asdf=123"
 
-      iex> Jirex.QueryParams.convert([asdf: 123, hjkl: 456], [:hjkl])
+      iex> ExJira.QueryParams.convert([asdf: 123, hjkl: 456], [:hjkl])
       "hjkl=456"
 
-      iex> Jirex.QueryParams.convert([asdf: 123, hjkl: 456], [:qwerty])
+      iex> ExJira.QueryParams.convert([asdf: 123, hjkl: 456], [:qwerty])
       ""
 
-      iex> Jirex.QueryParams.convert([asdf: 123, hjkl: 456], [])
+      iex> ExJira.QueryParams.convert([asdf: 123, hjkl: 456], [])
       ""
 
   """

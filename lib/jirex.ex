@@ -1,5 +1,5 @@
-defmodule Jirex do
+defmodule ExJira do
   @moduledoc """
-  The Jirex Elixir package provides access to the JIRA REST API.
+  The ExJira Elixir package provides access to the JIRA REST API.
   """
 end

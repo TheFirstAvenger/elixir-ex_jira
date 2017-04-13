@@ -1,6 +1,6 @@
 defmodule DashboardTest do
   use ExUnit.Case
-  alias Jirex.Dashboard
+  alias ExJira.Dashboard
 
   doctest Dashboard
 
