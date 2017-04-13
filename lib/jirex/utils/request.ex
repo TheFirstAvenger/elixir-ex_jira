@@ -3,7 +3,7 @@ require Logger
 defmodule ExJira.Request do
   @moduledoc """
   Provides the base request function and helper functions for GET and POST.
-  All request functions return either {:ok, {status, data}} or {:error, reason}
+  All request functions return either {:ok, data} or {:error, reason}
   """
 
   @type request_response :: {:ok, any} | {:error, any}
@@ -22,6 +22,9 @@ defmodule ExJira.Request do
   @doc """
   Sends a GET request to the specified resource_path with the specified query_params.
   Sends multiple requests if more resources are available.
+
+  Note: REST endpoints that return all entries every time as a top level list
+  and never page (e.g. Project) should use `get_one/2` instead.
 
   ## Examples
 

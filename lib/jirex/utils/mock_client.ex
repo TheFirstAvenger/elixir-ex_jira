@@ -39,6 +39,8 @@ defmodule ExJira.MockClient do
     %HTTPotion.Response{body: "{\"id\":\"1006\"}", headers: @headers}
   end
 
+  #Dashboard
+
   def get("https://test_account/rest/api/latest/dashboard?", _) do
     %HTTPotion.Response{body: "{\"total\":2, \"dashboards\":[{\"id\":\"1007\"},{\"id\":\"1008\"}]}", headers: @headers}
   end
@@ -46,5 +48,20 @@ defmodule ExJira.MockClient do
   def get("https://test_account/rest/api/latest/dashboard/1009?", _) do
     %HTTPotion.Response{body: "{\"id\":\"1009\"}", headers: @headers}
   end
+
+  #Project
+
+  def get("https://test_account/rest/api/latest/project?", _) do
+    %HTTPotion.Response{body: "[{\"id\":\"1010\"},{\"id\":\"1011\"}]", headers: @headers}
+  end
+
+  def get("https://test_account/rest/api/latest/project/1012?", _) do
+    %HTTPotion.Response{body: "{\"id\":\"1012\"}", headers: @headers}
+  end
+
+  def get("https://test_account/rest/api/latest/project/1012?expand=lead,url,description", _) do
+    %HTTPotion.Response{body: "{\"id\":\"1012\"}", headers: @headers}
+  end
+
 
 end

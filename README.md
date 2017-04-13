@@ -47,10 +47,23 @@ config :ex_jira,
 dashboards = ExJira.Dashboard.all!()
 dashboards = ExJira.Dashboard.all!(filter: "favourite")
 ```
+
+### Project
+```elixir
+{:ok, projects} = ExJira.Project.all()
+{:ok, projects} = ExJira.Project.all(expand: "description,url")
+projects = ExJira.Project.all!()
+projects = ExJira.Project.all!(expand: "description,url")
+
+{:ok, project} = ExJira.Project.get("1001")
+{:ok, project} = ExJira.Project.get("1001", expand: "description,url")
+project = ExJira.Project.get!("1001")
+project = ExJira.Project.get!("1001", expand: "description,url")
+```
 Raw requests to Jira for resources that are not yet implemented can be made like this:
 
 ```elixir
-{:ok, dashboards} = ExJira.Request.get("/dashboard","filter=favourite")
+{:ok, dashboards} = ExJira.Request.get_one("/dashboard","filter=favourite")
 {:ok, ret} = ExJira.Request.post("/project", "", "{\"name\":\"test\"}")
 ```
 
