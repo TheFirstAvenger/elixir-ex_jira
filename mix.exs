@@ -3,7 +3,7 @@ defmodule ExJira.Mixfile do
 
   def project do
     [app: :ex_jira,
-     version: "0.0.2",
+     version: "0.0.3",
      elixir: "~> 1.4",
      description: description(),
      package: package(),
