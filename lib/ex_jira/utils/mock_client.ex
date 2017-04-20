@@ -63,5 +63,12 @@ defmodule ExJira.MockClient do
     %HTTPotion.Response{body: "{\"id\":\"1012\"}", headers: @headers}
   end
 
+  def get("https://test_account/rest/api/latest/search?jql=project=1013", _) do
+    %HTTPotion.Response{body: "{\"total\":2, \"issues\":[{\"id\":\"100040\"}, {\"id\":\"100041\"}]}", headers: @headers}
+  end
+
+  def get("https://test_account/rest/api/latest/search?expand=operations&jql=project=1013", _) do
+    %HTTPotion.Response{body: "{\"total\":2, \"issues\":[{\"id\":\"100040\"}, {\"id\":\"100041\"}]}", headers: @headers}
+  end
 
 end

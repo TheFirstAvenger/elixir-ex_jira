@@ -8,6 +8,7 @@ defmodule ExJira.Project do
 
   @all_params [:expand, :recent]
   @get_params [:expand]
+  @get_issues_params [:fields, :expand, :properties]
 
   @doc """
   Returns all projects. Request parameters as described [here](https://docs.atlassian.com/jira/REST/cloud/#api/2/project-getAllProjects)
@@ -77,4 +78,41 @@ defmodule ExJira.Project do
     end
   end
 
+
+  @doc """
+  Returns the issues for the specified project.
+
+  ## Examples
+
+      iex> ExJira.Project.get_issues("1013")
+      {:ok, [%{"id" => "100040"}, %{"id" => "100041"}]}
+
+      iex> ExJira.Project.get_issues("1013", expand: "operations")
+      {:ok, [%{"id" => "100040"}, %{"id" => "100041"}]}
+
+  """
+  @spec get_issues(String.t, [{atom, String.t}]) :: Request.request_response
+  def get_issues(id, query_params \\ []) do
+    Request.get_all("/search", "issues", "#{QueryParams.convert(query_params, @get_issues_params)}jql=project=#{id}")
+  end
+
+  @doc """
+  Same as `get/1` but raises error if it fails
+
+  ## Examples
+
+      iex> ExJira.Project.get_issues!("1013")
+      [%{"id" => "100040"}, %{"id" => "100041"}]
+
+      iex> ExJira.Project.get_issues!("1013", expand: "operations")
+      [%{"id" => "100040"}, %{"id" => "100041"}]
+
+  """
+  @spec get_issues!(String.t, [{atom, String.t}]) :: any
+  def get_issues!(id, query_params \\ []) do
+    case get_issues(id, query_params) do
+      {:ok, items} -> items
+      {:error, reason} -> raise "Error in #{__MODULE__}.get_issues!: #{inspect reason}"
+    end
+  end
 end

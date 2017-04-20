@@ -20,8 +20,9 @@ defmodule ExJira.Request do
   defp jira_client(), do: Application.get_env(:ex_jira, :http_client) || HTTPotion
 
   @doc """
-  Sends a GET request to the specified resource_path with the specified query_params.
-  Sends multiple requests if more resources are available.
+  Sends a GET request to the specified resource_path with the specified query_params,
+  returning the subitem with the key specified by the resource parameter. Sends
+  multiple requests if more resources are available.
 
   Note: REST endpoints that return all entries every time as a top level list
   and never page (e.g. Project) should use `get_one/2` instead.
@@ -54,7 +55,7 @@ defmodule ExJira.Request do
     request("GET", resource_path, query_params, "")
   end
 
-  @spec get_more(request_response, [...], String.t, String.t, String.t) :: request_response
+  @spec get_more(request_response, [any], String.t, String.t, String.t) :: request_response
   defp get_more({:error, reason}, _, _, _, _), do: {:error, reason}
   defp get_more({:ok, %{"total" => total} = response}, prev_items, resource_path, resource, query_params) do
     items = response[resource]
@@ -109,7 +110,7 @@ defmodule ExJira.Request do
     end
   end
 
-  def get_auth() do
+  defp get_auth() do
     auth = "#{jira_username()}:#{jira_password()}" |> Base.encode64
     "Basic #{auth}"
   end
