@@ -115,4 +115,21 @@ defmodule ExJira.Project do
       {:error, reason} -> raise "Error in #{__MODULE__}.get_issues!: #{inspect reason}"
     end
   end
+
+  @doc """
+  Returns a single issue based on specified ticket number.
+
+  ## Examples
+
+  iex> ExJira.Project.get_issue("ISSUE-1012")
+  {:ok, %{"id" => "1012"}}
+
+  iex> ExJira.Project.get_issue("ISSUE-1012", expand: "lead,url,description")
+  {:ok, %{"id" => "1012"}}
+
+  """
+  @spec get_issue(String.t, [{atom, String.t}]) :: Request.request_response
+  def get_issue(id, query_params \\ []) do
+    Request.get_one("/issue/#{id}", QueryParams.convert(query_params, @get_params))
+  end
 end
