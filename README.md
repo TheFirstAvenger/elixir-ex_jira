@@ -64,11 +64,6 @@ project = ExJira.Project.get!("1001", expand: "description,url")
 {:ok, issues} = ExJira.Project.get_issues("1001", expand: "operations")
 issues = ExJira.Project.get_issues!("1001")
 issues = ExJira.Project.get_issues!("1001", expand: "operations")
-
-{:ok, issues} = ExJira.Project.get_issues("1001")
-{:ok, issues} = ExJira.Project.get_issues("1001", expand: "operations")
-issues = ExJira.Project.get_issues!("1001")
-issues = ExJira.Project.get_issues!("1001", expand: "operations")
 ```
 Raw requests to Jira for resources that are not yet implemented can be made like this:
 
