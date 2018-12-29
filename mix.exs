@@ -5,7 +5,7 @@ defmodule ExJira.Mixfile do
     [
       aliases: aliases(),
       app: :ex_jira,
-      version: "0.0.3",
+      version: "0.0.5",
       elixir: "~> 1.4",
       description: description(),
       package: package(),
