@@ -6,7 +6,7 @@ Still in development. POST has not been tested. Need remainder of resources impl
 
 [![Build Status](https://travis-ci.com/TheFirstAvenger/elixir-ex_jira.svg?branch=master)](https://travis-ci.com/TheFirstAvenger/elixir-ex_jira)
 [![Coverage Status](https://coveralls.io/repos/github/TheFirstAvenger/elixir-ex_jira/badge.svg?branch=master)](https://coveralls.io/github/TheFirstAvenger/elixir-ex_jira?branch=master)
-[![Project license](https://img.shields.io/hexpm/l/elixir-ex_jira.svg)](https://unlicense.org/)
+[![Project license](https://img.shields.io/hexpm/l/ex_jira.svg)](https://unlicense.org/)
 [![Hex.pm package](https://img.shields.io/hexpm/v/ex_jira.svg)](https://hex.pm/packages/ex_jira)
 [![Hex.pm downloads](https://img.shields.io/hexpm/dt/ex_jira.svg)](https://hex.pm/packages/ex_jira)
 
