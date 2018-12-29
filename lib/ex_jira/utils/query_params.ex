@@ -1,5 +1,4 @@
 defmodule ExJira.QueryParams do
-
   @moduledoc """
   Helper module to convert parameters passed as a keyword list into a querystring.
   """
@@ -26,17 +25,19 @@ defmodule ExJira.QueryParams do
       ""
 
   """
-  @spec convert([{atom, String.t}], [atom]) :: String.t
+  @spec convert([{atom, String.t()}], [atom]) :: String.t()
   def convert(_params, []), do: ""
+
   def convert(params, [h | t]) do
-    amp = case t do
-      [] -> ""
-      _  -> "&"
-    end
+    amp =
+      case t do
+        [] -> ""
+        _ -> "&"
+      end
+
     cond do
       Keyword.has_key?(params, h) -> "#{to_string(h)}=#{params[h]}#{amp}#{convert(params, t)}"
       true -> convert(params, t)
     end
   end
-
 end
