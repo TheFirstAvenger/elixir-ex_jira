@@ -1,6 +1,6 @@
 defmodule ExJira.Dashboard do
-  alias ExJira.Request
   alias ExJira.QueryParams
+  alias ExJira.Request
 
   @moduledoc """
   Provides access to the Dashboard resource.

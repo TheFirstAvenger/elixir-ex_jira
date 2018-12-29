@@ -2,14 +2,25 @@ defmodule ExJira.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ex_jira,
-     version: "0.0.3",
-     elixir: "~> 1.4",
-     description: description(),
-     package: package(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      aliases: aliases(),
+      app: :ex_jira,
+      version: "0.0.3",
+      elixir: "~> 1.4",
+      description: description(),
+      package: package(),
+      build_embedded: Mix.env() == :prod,
+      source_url: "https://github.com/TheFirstAvenger/elixir-ex_jira",
+      start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -30,10 +41,16 @@ defmodule ExJira.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:httpotion, "~> 3.0"},
-     {:poison, "~> 3.1"},
-     {:earmark, "~> 1.0.1", only: :dev},
-     {:ex_doc, "~> 0.13.1", only: :dev}]
+    [
+      {:httpotion, "~> 3.0"},
+      {:poison, "~> 3.1"},
+      {:ex_unit_notifier, "~> 0.1", only: :test},
+      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
+      {:earmark, "~> 1.2", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.19.1", only: :dev, runtime: false},
+      {:excoveralls, "~> 0.10.3", only: :test},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+    ]
   end
 
   defp description do
@@ -41,8 +58,16 @@ defmodule ExJira.Mixfile do
   end
 
   defp package do
-    [maintainers: ["Mike Binns"],
-     licenses: ["MIT"],
-     links: %{"GitHub" => "https://github.com/TheFirstAvenger/elixir-ex_jira.git"}]
+    [
+      maintainers: ["Mike Binns"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/TheFirstAvenger/elixir-ex_jira.git"}
+    ]
+  end
+
+  defp aliases do
+    [
+      compile: ["compile --warnings-as-errors"]
+    ]
   end
 end

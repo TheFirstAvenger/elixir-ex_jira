@@ -35,9 +35,10 @@ defmodule ExJira.QueryParams do
         _ -> "&"
       end
 
-    cond do
-      Keyword.has_key?(params, h) -> "#{to_string(h)}=#{params[h]}#{amp}#{convert(params, t)}"
-      true -> convert(params, t)
+    if Keyword.has_key?(params, h) do
+      "#{to_string(h)}=#{params[h]}#{amp}#{convert(params, t)}"
+    else
+      convert(params, t)
     end
   end
 end

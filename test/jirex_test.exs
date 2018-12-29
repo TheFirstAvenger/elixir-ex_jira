@@ -1,4 +1,4 @@
 defmodule ExJiraTest do
   use ExUnit.Case
-  #doctest ExJira
+  # doctest ExJira
 end

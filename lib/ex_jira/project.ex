@@ -1,6 +1,6 @@
 defmodule ExJira.Project do
-  alias ExJira.Request
   alias ExJira.QueryParams
+  alias ExJira.Request
 
   @moduledoc """
   Provides access to the Project resource.
@@ -19,7 +19,7 @@ defmodule ExJira.Project do
       {:ok, [%{"id" => "1010"}, %{"id" => "1011"}]}
 
   """
-  @spec all([{atom, String.t}]) :: Request.request_response
+  @spec all([{atom, String.t()}]) :: Request.request_response()
   def all(query_params \\ []) do
     Request.get_one("/project", QueryParams.convert(query_params, @all_params))
   end
@@ -33,11 +33,11 @@ defmodule ExJira.Project do
       [%{"id" => "1010"}, %{"id" => "1011"}]
 
   """
-  @spec all!([{atom, String.t}]) :: [any]
+  @spec all!([{atom, String.t()}]) :: [any]
   def all!(query_params \\ []) do
     case all(query_params) do
       {:ok, items} -> items
-      {:error, reason} -> raise "Error in #{__MODULE__}.all!: #{inspect reason}"
+      {:error, reason} -> raise "Error in #{__MODULE__}.all!: #{inspect(reason)}"
     end
   end
 
@@ -53,7 +53,7 @@ defmodule ExJira.Project do
       {:ok, %{"id" => "1012"}}
 
   """
-  @spec get(String.t, [{atom, String.t}]) :: Request.request_response
+  @spec get(String.t(), [{atom, String.t()}]) :: Request.request_response()
   def get(id, query_params \\ []) do
     Request.get_one("/project/#{id}", QueryParams.convert(query_params, @get_params))
   end
@@ -70,14 +70,13 @@ defmodule ExJira.Project do
       %{"id" => "1012"}
 
   """
-  @spec get!(String.t, [{atom, String.t}]) :: any
+  @spec get!(String.t(), [{atom, String.t()}]) :: any
   def get!(id, query_params \\ []) do
     case get(id, query_params) do
       {:ok, item} -> item
-      {:error, reason} -> raise "Error in #{__MODULE__}.get!: #{inspect reason}"
+      {:error, reason} -> raise "Error in #{__MODULE__}.get!: #{inspect(reason)}"
     end
   end
-
 
   @doc """
   Returns the issues for the specified project.
@@ -91,9 +90,13 @@ defmodule ExJira.Project do
       {:ok, [%{"id" => "100040"}, %{"id" => "100041"}]}
 
   """
-  @spec get_issues(String.t, [{atom, String.t}]) :: Request.request_response
+  @spec get_issues(String.t(), [{atom, String.t()}]) :: Request.request_response()
   def get_issues(id, query_params \\ []) do
-    Request.get_all("/search", "issues", "#{QueryParams.convert(query_params, @get_issues_params)}jql=project=#{id}")
+    Request.get_all(
+      "/search",
+      "issues",
+      "#{QueryParams.convert(query_params, @get_issues_params)}jql=project=#{id}"
+    )
   end
 
   @doc """
@@ -108,11 +111,11 @@ defmodule ExJira.Project do
       [%{"id" => "100040"}, %{"id" => "100041"}]
 
   """
-  @spec get_issues!(String.t, [{atom, String.t}]) :: any
+  @spec get_issues!(String.t(), [{atom, String.t()}]) :: any
   def get_issues!(id, query_params \\ []) do
     case get_issues(id, query_params) do
       {:ok, items} -> items
-      {:error, reason} -> raise "Error in #{__MODULE__}.get_issues!: #{inspect reason}"
+      {:error, reason} -> raise "Error in #{__MODULE__}.get_issues!: #{inspect(reason)}"
     end
   end
 
@@ -128,7 +131,7 @@ defmodule ExJira.Project do
     {:ok, %{"id" => "1012"}}
 
   """
-  @spec get_issue(String.t, [{atom, String.t}]) :: Request.request_response
+  @spec get_issue(String.t(), [{atom, String.t()}]) :: Request.request_response()
   def get_issue(id, query_params \\ []) do
     Request.get_one("/issue/#{id}", QueryParams.convert(query_params, @get_params))
   end
@@ -145,11 +148,11 @@ defmodule ExJira.Project do
     %{"id" => "1012"}
 
   """
-  @spec get_issue!(String.t, [{atom, String.t}]) :: any
+  @spec get_issue!(String.t(), [{atom, String.t()}]) :: any
   def get_issue!(id, query_params \\ []) do
     case get_issue(id, query_params) do
       {:ok, items} -> items
-      {:error, reason} -> raise "Error in #{__MODULE__}.get_issue!: #{inspect reason}"
+      {:error, reason} -> raise "Error in #{__MODULE__}.get_issue!: #{inspect(reason)}"
     end
   end
 end

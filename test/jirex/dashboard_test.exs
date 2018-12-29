@@ -3,5 +3,4 @@ defmodule DashboardTest do
   alias ExJira.Dashboard
 
   doctest Dashboard
-
 end

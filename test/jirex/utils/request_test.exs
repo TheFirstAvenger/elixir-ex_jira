@@ -9,8 +9,7 @@ defmodule RequestTest do
   end
 
   test "get headers" do
-    assert Request.get_all("/headers/test2", "things", "a=b&c=d") == {:ok, [%{"id" => "1004"}, %{"id" => "1005"}]}
+    assert Request.get_all("/headers/test2", "things", "a=b&c=d") ==
+             {:ok, [%{"id" => "1004"}, %{"id" => "1005"}]}
   end
-
-
 end

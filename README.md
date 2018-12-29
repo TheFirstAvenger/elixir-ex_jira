@@ -4,6 +4,12 @@ Elixir wrapper for the JIRA REST API as outlined [here](https://docs.atlassian.c
 
 Still in development. POST has not been tested. Need remainder of resources implemented. Contributions welcome!
 
+[![Build Status](https://travis-ci.com/TheFirstAvenger/elixir-ex_jira.svg?branch=master)](https://travis-ci.com/TheFirstAvenger/elixir-ex_jira)
+[![Coverage Status](https://coveralls.io/repos/github/TheFirstAvenger/elixir-ex_jira/badge.svg?branch=master)](https://coveralls.io/github/TheFirstAvenger/elixir-ex_jira?branch=master)
+[![Project license](https://img.shields.io/hexpm/l/elixir-ex_jira.svg)](https://unlicense.org/)
+[![Hex.pm package](https://img.shields.io/hexpm/v/ex_jira.svg)](https://hex.pm/packages/ex_jira)
+[![Hex.pm downloads](https://img.shields.io/hexpm/dt/ex_jira.svg)](https://hex.pm/packages/ex_jira)
+
 ## Installation
 
 ExJira can be installed by adding `ex_jira` to your list of dependencies in `mix.exs`:
@@ -33,6 +39,7 @@ config :ex_jira,
 ```
 
 For testing purposes, you can override the HTTP client that ExJira uses via the following application variable:
+
 ```elixir
 config :ex_jira,
   http_client: ExJira.MockClient
@@ -41,6 +48,7 @@ config :ex_jira,
 ## Usage
 
 ### Dashboard
+
 ```elixir
 {:ok, dashboards} = ExJira.Dashboard.all()
 {:ok, dashboards} = ExJira.Dashboard.all(filter: "favourite")
@@ -49,6 +57,7 @@ dashboards = ExJira.Dashboard.all!(filter: "favourite")
 ```
 
 ### Project
+
 ```elixir
 {:ok, projects} = ExJira.Project.all()
 {:ok, projects} = ExJira.Project.all(expand: "description,url")
@@ -65,6 +74,7 @@ project = ExJira.Project.get!("1001", expand: "description,url")
 issues = ExJira.Project.get_issues!("1001")
 issues = ExJira.Project.get_issues!("1001", expand: "operations")
 ```
+
 Raw requests to Jira for resources that are not yet implemented can be made like this:
 
 ```elixir

@@ -3,5 +3,4 @@ defmodule ProjectTest do
   alias ExJira.Project
 
   doctest Project
-
 end

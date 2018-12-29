@@ -8,16 +8,16 @@ defmodule ExJira.Request do
 
   @type request_response :: {:ok, any} | {:error, any}
 
-  @spec jira_account() :: String.t()
-  defp jira_account(), do: Application.get_env(:ex_jira, :account)
-  @spec jira_username() :: String.t()
-  defp jira_username(), do: Application.get_env(:ex_jira, :username)
-  @spec jira_password() :: String.t()
-  defp jira_password(), do: Application.get_env(:ex_jira, :password)
-  @spec jira_timeout() :: String.t()
-  defp jira_timeout(), do: Application.get_env(:ex_jira, :timeout) || 30_000
-  @spec jira_client() :: atom
-  defp jira_client(), do: Application.get_env(:ex_jira, :http_client) || HTTPotion
+  @spec jira_account :: String.t()
+  defp jira_account, do: Application.get_env(:ex_jira, :account)
+  @spec jira_username :: String.t()
+  defp jira_username, do: Application.get_env(:ex_jira, :username)
+  @spec jira_password :: String.t()
+  defp jira_password, do: Application.get_env(:ex_jira, :password)
+  @spec jira_timeout :: String.t()
+  defp jira_timeout, do: Application.get_env(:ex_jira, :timeout) || 30_000
+  @spec jira_client :: atom
+  defp jira_client, do: Application.get_env(:ex_jira, :http_client) || HTTPotion
 
   @doc """
   Sends a GET request to the specified resource_path with the specified query_params,
@@ -108,7 +108,7 @@ defmodule ExJira.Request do
     url = {resource_path, query_params} |> build_request_url
     auth = get_auth()
 
-    Logger.debug("ExJira.Request: Sending #{method} to #{url} using #{jira_client()}")
+    Logger.debug(fn -> "ExJira.Request: Sending #{method} to #{url} using #{jira_client()}" end)
 
     case httpotion_request(jira_client(), method, url, payload,
            timeout: jira_timeout(),
@@ -140,7 +140,7 @@ defmodule ExJira.Request do
     "https://#{jira_account()}/rest/api/latest#{resource_path}?#{params}"
   end
 
-  defp get_auth() do
+  defp get_auth do
     auth = "#{jira_username()}:#{jira_password()}" |> Base.encode64()
     "Basic #{auth}"
   end

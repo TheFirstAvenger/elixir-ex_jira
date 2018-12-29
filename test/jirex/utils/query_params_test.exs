@@ -3,5 +3,4 @@ defmodule QueryParamsTest do
   alias ExJira.QueryParams
 
   doctest QueryParams
-
 end

@@ -7,7 +7,7 @@ defmodule ExJira.MockClient do
 
   # Request
   def get("https://test_account/rest/api/latest/headers/test?a=b&c=d",
-        timeout: 30000,
+        timeout: 30_000,
         headers: [
           "Content-Type": "application/json",
           Authorization: "Basic dGVzdF91c2VybmFtZTp0ZXN0X3Bhc3N3b3Jk"
@@ -17,7 +17,7 @@ defmodule ExJira.MockClient do
   end
 
   def get("https://test_account/rest/api/latest/headers/test2?a=b&c=d",
-        timeout: 30000,
+        timeout: 30_000,
         headers: [
           "Content-Type": "application/json",
           Authorization: "Basic dGVzdF91c2VybmFtZTp0ZXN0X3Bhc3N3b3Jk"
